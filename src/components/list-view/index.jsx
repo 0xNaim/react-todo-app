@@ -11,7 +11,7 @@ const ListItem = ({ todo, toggleSelect, toggleComplete }) => {
         id={todo.id}
         checked={todo.isSelect}
         onChange={() => toggleSelect(todo.id)}
-      />
+      /> 
 
       <div className="mx-3">
         <h4>{todo.text}</h4>
@@ -21,7 +21,7 @@ const ListItem = ({ todo, toggleSelect, toggleComplete }) => {
 
       <Button
         className="ml-auto"
-        color={todo.toggleComplete ? "danger" : "success"}
+        color={todo.isComplete ? "danger" : "success"}
         onClick={() => toggleComplete(todo.id)}
       >
         {todo.isComplete ? "Completed" : "Running"}
@@ -37,15 +37,15 @@ ListItem.propTypes = {
 };
 
 // list view component
-const ListView = ({ todos, isSelect, isComplete }) => {
+const ListView = ({ todos, toggleSelect, toggleComplete }) => {
   return (
     <ListGroup>
       {todos.map((todo) => (
         <ListItem
           key={todo.id}
           todo={todo}
-          isSelect={isSelect}
-          isComplete={isComplete}
+          toggleSelect={toggleSelect}
+          toggleComplete={toggleComplete}
         />
       ))}
     </ListGroup>

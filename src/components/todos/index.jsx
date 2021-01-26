@@ -30,9 +30,21 @@ class Todos extends React.Component {
     searchTask: "",
   };
 
-  toggleSelect = (todoId) => {};
+  toggleSelect = (todoId) => {
+    const todos = [...this.state.todos];
+    const todo = todos.find((todo) => todo.id === todoId);
+    todo.isSelect = !todo.isSelect;
 
-  toggleComplete = (todoId) => {};
+    this.setState({ todos });
+  };
+
+  toggleComplete = (todoId) => {
+    const todos = [...this.state.todos];
+    const todo = todos.find((todo) => todo.id === todoId);
+    todo.isComplete = !todo.isComplete;
+
+    this.setState({ todos });
+  };
 
   toggleForm = () => {
     this.setState({
