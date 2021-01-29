@@ -142,7 +142,7 @@ class Todos extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="display-4 text-center mb-5">Stack Todos</h1>
+        <h1 className="display-4 text-center mb-5">React Todos</h1>
         <Controller
           task={this.state.searchTask}
           toggleForm={this.toggleForm}
