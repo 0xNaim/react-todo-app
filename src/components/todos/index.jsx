@@ -10,7 +10,7 @@ class Todos extends React.Component {
   state = {
     todos: [
       {
-        id: "a",
+        id: 1,
         text: "main todo text",
         description: "simple description",
         time: new Date(),
@@ -18,8 +18,16 @@ class Todos extends React.Component {
         isSelect: false,
       },
       {
-        id: "b",
-        text: "main todo text",
+        id: 2,
+        text: "main another",
+        description: "simple description",
+        time: new Date(),
+        isComplete: false,
+        isSelect: false,
+      },
+      {
+        id: 3,
+        text: "new task",
         description: "simple description",
         time: new Date(),
         isComplete: false,
@@ -53,7 +61,9 @@ class Todos extends React.Component {
     });
   };
 
-  handleSearch = () => {};
+  handleSearch = (value) => {
+    this.setState({ searchTask: value });
+  };
 
   createTodo = (todo) => {
     todo.id = shortid.generate();
@@ -80,16 +90,23 @@ class Todos extends React.Component {
 
   reset = () => {};
 
+  performSearch = () => {
+    return this.state.todos.filter((todo) =>
+      todo.text.toLowerCase().includes(this.state.searchTask.toLowerCase())
+    );
+  };
+
   getView = () => {
+    let todos = this.performSearch();
     return this.state.view === "list" ? (
       <ListView
-        todos={this.state.todos}
+        todos={todos}
         toggleSelect={this.toggleSelect}
         toggleComplete={this.toggleComplete}
       />
     ) : (
       <TableView
-        todos={this.state.todos}
+        todos={todos}
         toggleSelect={this.toggleSelect}
         toggleComplete={this.toggleComplete}
       />
