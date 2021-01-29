@@ -44,7 +44,6 @@ class Todos extends React.Component {
     const todos = [...this.state.todos];
     const todo = todos.find((todo) => todo.id === todoId);
     todo.isSelect = !todo.isSelect;
-
     this.setState({ todos });
   };
 
@@ -52,7 +51,6 @@ class Todos extends React.Component {
     const todos = [...this.state.todos];
     const todo = todos.find((todo) => todo.id === todoId);
     todo.isComplete = !todo.isComplete;
-
     this.setState({ todos });
   };
 
@@ -87,11 +85,24 @@ class Todos extends React.Component {
     });
   };
 
-  clearSelected = () => {};
+  clearSelected = () => {
+    const todos = this.state.todos.filter((todo) => !todo.isSelect);
+    this.setState({ todos });
+  };
 
-  clearCompleted = () => {};
+  clearCompleted = () => {
+    const todos = this.state.todos.filter((todo) => !todo.isComplete);
+    this.setState({ todos });
+  };
 
-  reset = () => {};
+  reset = () => {
+    this.setState({
+      isOpenTodoForm: false,
+      searchTask: "",
+      view: "list",
+      filter: "all",
+    });
+  };
 
   performSearch = () => {
     return this.state.todos.filter((todo) =>
